@@ -308,9 +308,9 @@ __NT_CON void __NT_DCL nt_early_init(void) {
     // always use BINARY mode as TEXT mode will report incorrect file length and it will
     // append an extra byte 0x0D (\r) to every 0x0A (\n) read/write, which may result in corrupted I/O operations
     NT_DEBUG("Set I/O mode to BINARY");
-    _set_fmode(O_BINARY);
+    //_set_fmode(O_BINARY);
 
-    _get_fmode(&fmode);
+    //_get_fmode(&fmode);
     NT_DEBUG("I/O mode: %s", fmode == O_BINARY ? "BINARY" : "TEXT");
 #define BINARY_MODE(FILE) \
     { \
@@ -334,7 +334,7 @@ __NT_CON void __NT_DCL nt_early_init(void) {
     _set_invalid_parameter_handler(invalid_parameter_handler);
 
     NT_DEBUG("Configure abort behavior");
-    _set_abort_behavior(0, 0);
+    //_set_abort_behavior(0, 0);
 
     NT_DEBUG("Configure exception handler");
     SetUnhandledExceptionFilter(exception_handler);
@@ -597,7 +597,7 @@ ssize_t __NT_DCL sendfile(int out_fd, int in_fd, off_t *offset, size_t count) {
 #define SYMLINK_COOKIE_LEN 10
 #define SYMLINK_MAXSIZE 1024
 static int fix_stat(const char *pathname,
-                    const struct _stati64 nbuf,
+                    const struct _stat64 nbuf,
                     stat_t *buf) {
     BY_HANDLE_FILE_INFORMATION fi;
     HANDLE hd;

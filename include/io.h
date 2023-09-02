@@ -2,4 +2,4 @@
 
 #undef creat
 
-#define creat(path, mode) _open(path, O_TRUNC | O_RDWR | O_CREAT, mode)
+#define creat(path, mode) _open(path, O_TRUNC | O_RDWR | O_CREAT | O_BINARY, mode)
